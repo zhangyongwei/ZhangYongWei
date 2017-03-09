@@ -14,6 +14,7 @@ import com.zhangyongwei.zhangyongwei.R;
 import com.zhangyongwei.zhangyongwei.base.BaseFragment;
 import com.zhangyongwei.zhangyongwei.firstfragment.adapter.HomeAdapter;
 import com.zhangyongwei.zhangyongwei.firstfragment.bean.HomeBean;
+import com.zhangyongwei.zhangyongwei.utils.CacheUtils;
 import com.zhangyongwei.zhangyongwei.utils.Constants;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -39,7 +40,7 @@ public class HomeFragment extends BaseFragment {
     MaterialRefreshLayout refresh;
     //适配器
     private HomeAdapter adapter;
-
+    //是否加载更多
     private boolean isLoadMore=false;
 
     private String moreUrl;
@@ -63,6 +64,11 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+
+        if(!TextUtils.isEmpty(CacheUtils.getString(mContext,Constants.NEWSCENTER_PAGER_URL))){
+            processData(CacheUtils.getString(mContext,Constants.NEWSCENTER_PAGER_URL));
+        }
+
         //联网请求数据
         getDataFromNet();
 
@@ -110,6 +116,9 @@ public class HomeFragment extends BaseFragment {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        //请求成功后存到sd卡
+                        CacheUtils.putString(mContext,Constants.NEWSCENTER_PAGER_URL,response);
+
                         Log.e("TAG", "联网成功" + response);
 
                         processData(response);
@@ -137,6 +146,9 @@ public class HomeFragment extends BaseFragment {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        //请求成功后存到sd卡
+                        CacheUtils.putString(mContext,Constants.NEWSCENTER_PAGER_URL,response);
+
                         Log.e("TAG", "联网成功" + response);
 
                         processData(response);

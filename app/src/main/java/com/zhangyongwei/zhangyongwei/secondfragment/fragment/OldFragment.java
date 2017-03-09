@@ -1,10 +1,9 @@
 package com.zhangyongwei.zhangyongwei.secondfragment.fragment;
 
-import android.graphics.Color;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.zhangyongwei.zhangyongwei.R;
 import com.zhangyongwei.zhangyongwei.base.BaseFragment;
 
 /**
@@ -13,20 +12,20 @@ import com.zhangyongwei.zhangyongwei.base.BaseFragment;
 
 public class OldFragment extends BaseFragment {
 
-    private TextView textView;
+    private ImageView imageView;
     @Override
     public View initView() {
 
-        textView = new TextView(mContext);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(20);
-        textView.setText("OldFragment");
-        return textView;
+
+        imageView = new ImageView(mContext);
+
+        return imageView;
     }
 
     @Override
     public void initData() {
         super.initData();
+
+        imageView.setImageResource(R.drawable.bb);
     }
 }
