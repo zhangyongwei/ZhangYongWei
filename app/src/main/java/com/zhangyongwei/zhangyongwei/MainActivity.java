@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         rgMain.check(R.id.rb_home);
     }
 
+
+
     /**
      * 切换不同的fragment
      * @param currentFragment
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     /**
      * 初始化fragment
      */
@@ -129,4 +132,5 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(new TypeFragment());
         fragments.add(new UserFragment());
     }
+
 }
